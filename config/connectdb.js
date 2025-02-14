@@ -1,13 +1,15 @@
-const mongoose=require("mongoose");
-const db=async ()=>{
-try{
-    
-        const con=await mongoose.connect("mongodb://127.0.0.1:27017/bench");
-        console.log("db connected");
-    
-}
-catch(e){
-console.log(e.message);
+const mongoose = require("mongoose");//odm
 
-}}
-module.exports=db;
+const db = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URL);
+        console.log(`MongoDB connected: ${conn.connection.host}`);
+    } catch (err) {
+        console.error(`MongoDB Connection Error: ${err.message}`);
+        
+    }
+};
+
+
+
+module.exports = db;
